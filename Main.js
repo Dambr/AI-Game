@@ -8,9 +8,9 @@ const connection = mysql.createConnection({
 });
 
 const defaultValue = 1 / require('./First').solutions.length;
-const solutions = require('./First').solutions;
-const insertQuery = 'Решение VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL, ' + require('./First').stb.join(` DOUBLE NOT NULL DEFAULT ${defaultValue}, `) + ` DOUBLE NOT NULL DEFAULT ${defaultValue}`;
-const stb = '\'' + require('./First').stb.join('\', \'') + '\'';
+const events = require('./First').events;
+const insertQuery = 'Событие VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL, ' + require('./First').solutions.join(` DOUBLE NOT NULL DEFAULT ${defaultValue}, `) + ` DOUBLE NOT NULL DEFAULT ${defaultValue}`;
+// const stb = '\'' + require('./First').stb.join('\', \'') + '\'';
 
 
 new Promise(function(response, reject){
@@ -28,8 +28,8 @@ new Promise(function(response, reject){
 .then(
 	() => {
 		// Заполнение таблицы новыми данными
-		for (let solution of solutions){
-			connection.query('INSERT INTO test(Решение) VALUES(\'' + solution + '\')');
+		for (let event of events){
+			connection.query('INSERT INTO test(Событие) VALUES(\'' + event + '\')');
 		}
 	}
 )
