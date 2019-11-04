@@ -35,8 +35,8 @@ new Promise(function(response, reject){
 )
 .then(
 	() => {
-		let main = require('./Helper.js');
-		main();
+		let helper = require('./Helper.js');
+		helper();
 	}
 )
 .then(
